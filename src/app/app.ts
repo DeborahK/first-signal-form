@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UserProfileForm } from './user/user-profile-form/user-profile-form';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [UserProfileForm],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('first-signal-form');
+  protected readonly title = signal('first signal form');
 }

@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">
+    User Profile
+    @if(fullName()) {
+    for {{fullName()}}
+    }
+  </div>
+  <div class="card-body">
+    <form autocomplete="off">
+      <div class="row">
+        <label class="row-label"
+               for="firstNameId">
+          First Name
+          @if (userProfileForm.firstName().required()) {
+            <span class="text-danger">*</span>
+          }
+        </label>
+        <div class="row-value">
+          <input type="text"
+                 class="form-control"
+                 [formField]="userProfileForm.firstName"
+                 id="firstNameId"
+                 placeholder="First Name" />
+        </div>
+        @let fn = userProfileForm.firstName;
+        @if (fn().invalid() && fn().touched()) {
+          <div class="alert alert-danger">
+            @for (error of fn().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="row">
+        <label class="row-label"
+               for="lastNameId">
+          Last Name
+          @if (userProfileForm.lastName().required()) {
+            <span class="text-danger">*</span>
+          }
+        </label>
+        <div class="row-value">
+          <input type="text"
+                 class="form-control"
+                 [formField]="userProfileForm.lastName"
+                 id="lastNameId"
+                 placeholder="Last Name" />
+        </div>
+        @let ln = userProfileForm.lastName;
+        @if (ln().invalid() && ln().touched()) {
+          <div class="alert alert-danger">
+            @for (error of ln().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
+        }        
+      </div>
+
+      <div class="row">
+        <div class="row-value">
+          <button type="button"
+                  title="Ensure the form is valid and required fields are entered before saving"
+                  class="btn btn-primary"
+                  [disabled]="this.userProfileForm().invalid()">
+            Save Profile
+          </button>
+          <button type="button"
+                  class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
