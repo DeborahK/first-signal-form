@@ -10,6 +10,8 @@ import { UserService } from '../user.service.ts';
   styleUrl: './user-profile-form.css',
 })
 export class UserProfileForm {
+  readonly defaultText = 'Save Profile';
+  saveText = signal(this.defaultText);
 
   // Create a form model signal with form fields
   // This represents the form's data structure
@@ -23,9 +25,10 @@ export class UserProfileForm {
   userProfileForm = form(this.userProfileModel, userProfileSchema, {
     submission: {
       action: async (f) => {
-        console.log('here');
+        this.saveText.set('... Saving');
         await this.userService.save(this.userProfileForm().value());
         this.userProfileForm().reset(initialData);
+        this.saveText.set(this.defaultText);
       }
     }
   });

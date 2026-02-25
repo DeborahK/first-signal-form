@@ -6,8 +6,11 @@ import { UserProfile } from './user-profile';
 })
 export class UserService {
   // Fake API implementation for now
-  save(value: UserProfile) {
+  // If working with RxJS, use firstValueFrom() or lastValueFrom()
+  async save(value: UserProfile) {
     console.log('Saving data: ', JSON.stringify(value));
-    return Promise.resolve({ status: 200, message: 'Success' });
+    const resp = { status: 200, message: 'Success' };
+    await new Promise(r => setTimeout(r, 2000));
+    return resp;
   }
 }
