@@ -2,17 +2,18 @@
   <div class="card-header">
     User Profile
     @if(fullName()) {
-      for {{fullName()}}
+    for {{fullName()}}
     }
   </div>
   <div class="card-body">
-    <form autocomplete="off">
+    <form [formRoot]="userProfileForm"
+          autocomplete="off">
       <div class="row">
         <label class="row-label"
                for="firstNameId">
           First Name
           @if (userProfileForm.firstName().required()) {
-            <span class="text-danger">*</span>
+          <span class="text-danger">*</span>
           }
         </label>
         <div class="row-value">
@@ -24,11 +25,11 @@
         </div>
         @let fn = userProfileForm.firstName;
         @if (fn().invalid() && fn().touched()) {
-          <div class="alert alert-danger">
-            @for (error of fn().errors(); track error.kind) {
-              <div>{{ error.message }}</div>
-            }
-          </div>
+        <div class="alert alert-danger">
+          @for (error of fn().errors(); track error.kind) {
+          <div>{{ error.message }}</div>
+          }
+        </div>
         }
       </div>
 
@@ -37,7 +38,7 @@
                for="lastNameId">
           Last Name
           @if (userProfileForm.lastName().required()) {
-            <span class="text-danger">*</span>
+          <span class="text-danger">*</span>
           }
         </label>
         <div class="row-value">
@@ -49,11 +50,11 @@
         </div>
         @let ln = userProfileForm.lastName;
         @if (ln().invalid() && ln().touched()) {
-          <div class="alert alert-danger">
+        <div class="alert alert-danger">
           @for (error of ln().errors(); track error.kind) {
-            <div>{{ error.message }}</div>
+          <div>{{ error.message }}</div>
           }
-          </div>
+        </div>
         }
       </div>
 
@@ -75,6 +76,14 @@
             Guest
           </label>
         </div>
+        @let en = userProfileForm.userType;
+        @if (en().invalid() && en().touched()) {
+        <div class="alert alert-danger">
+          @for (error of en().errors(); track error.kind) {
+          <div>{{ error.message }}</div>
+          }
+        </div>
+        }
       </div>
 
       @if(!userProfileForm.employeeNumber().hidden()) {
@@ -83,7 +92,7 @@
                for="employeeNumberId">
           Employee #
           @if (userProfileForm.employeeNumber().required()) {
-            <span class="text-danger">*</span>
+          <span class="text-danger">*</span>
           }
         </label>
         <div class="row-value">
@@ -95,21 +104,20 @@
         </div>
         @let en = userProfileForm.employeeNumber;
         @if (en().invalid() && en().touched()) {
-          <div class="alert alert-danger">
-            @for (error of en().errors(); track error.kind) {
-              <div>{{ error.message }}</div>
-            }
-          </div>
+        <div class="alert alert-danger">
+          @for (error of en().errors(); track error.kind) {
+          <div>{{ error.message }}</div>
+          }
+        </div>
         }
       </div>
       }
 
       <div class="row">
         <div class="row-value">
-          <button type="button"
+          <button type="submit"
                   title="Ensure the form is valid and required fields are entered before saving"
-                  class="btn btn-primary"
-                  [disabled]="this.userProfileForm().invalid()">
+                  class="btn btn-primary">
             Save Profile
           </button>
           <button type="button"
