@@ -141,6 +141,23 @@ form {
   opacity: 1; /* ensure browsers that apply opacity don't make it too faint */
 }
 
+/* Radio Buttons */
+.radio-group {
+  margin-top: 4px;
+}
+
+.radio-input {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-color, #b8860b);
+}
+
+.radio-input:focus-visible {
+  outline: 2px solid var(--primary-color, #b8860b);
+  outline-offset: 2px;
+}
+
 /* Buttons */
 .btn {
   display: inline-block;

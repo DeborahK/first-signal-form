@@ -3,11 +3,15 @@ import { minLength, required, schema } from "@angular/forms/signals";
 export interface UserProfile {
   firstName: string;
   lastName: string;
+  userType: 'employee' | 'guest' | '';
+  employeeNumber: string;
 }
 
 export const initialData: UserProfile = {
   firstName: '',
-  lastName: ''
+  lastName: '',
+  userType: '',
+  employeeNumber: ''
 }
 
 export const userProfileSchema = schema<UserProfile>(rootPath => {
