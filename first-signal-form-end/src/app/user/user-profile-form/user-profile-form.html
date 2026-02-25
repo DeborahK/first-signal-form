@@ -2,7 +2,7 @@
   <div class="card-header">
     User Profile
     @if(fullName()) {
-    for {{fullName()}}
+      for {{fullName()}}
     }
   </div>
   <div class="card-body">
@@ -13,7 +13,7 @@
                for="firstNameId">
           First Name
           @if (userProfileForm.firstName().required()) {
-          <span class="text-danger">*</span>
+            <span class="text-danger">*</span>
           }
         </label>
         <div class="row-value">
@@ -25,11 +25,11 @@
         </div>
         @let fn = userProfileForm.firstName;
         @if (fn().invalid() && fn().touched()) {
-        <div class="alert alert-danger">
-          @for (error of fn().errors(); track error.kind) {
-          <div>{{ error.message }}</div>
-          }
-        </div>
+          <div class="alert alert-danger">
+            @for (error of fn().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
         }
       </div>
 
@@ -38,7 +38,7 @@
                for="lastNameId">
           Last Name
           @if (userProfileForm.lastName().required()) {
-          <span class="text-danger">*</span>
+            <span class="text-danger">*</span>
           }
         </label>
         <div class="row-value">
@@ -50,11 +50,11 @@
         </div>
         @let ln = userProfileForm.lastName;
         @if (ln().invalid() && ln().touched()) {
-        <div class="alert alert-danger">
-          @for (error of ln().errors(); track error.kind) {
-          <div>{{ error.message }}</div>
-          }
-        </div>
+          <div class="alert alert-danger">
+            @for (error of ln().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
         }
       </div>
 
@@ -78,11 +78,11 @@
         </div>
         @let en = userProfileForm.userType;
         @if (en().invalid() && en().touched()) {
-        <div class="alert alert-danger">
-          @for (error of en().errors(); track error.kind) {
-          <div>{{ error.message }}</div>
-          }
-        </div>
+          <div class="alert alert-danger">
+            @for (error of en().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
         }
       </div>
 
@@ -92,7 +92,7 @@
                for="employeeNumberId">
           Employee #
           @if (userProfileForm.employeeNumber().required()) {
-          <span class="text-danger">*</span>
+            <span class="text-danger">*</span>
           }
         </label>
         <div class="row-value">
@@ -104,11 +104,11 @@
         </div>
         @let en = userProfileForm.employeeNumber;
         @if (en().invalid() && en().touched()) {
-        <div class="alert alert-danger">
-          @for (error of en().errors(); track error.kind) {
-          <div>{{ error.message }}</div>
-          }
-        </div>
+          <div class="alert alert-danger">
+            @for (error of en().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
         }
       </div>
       }
