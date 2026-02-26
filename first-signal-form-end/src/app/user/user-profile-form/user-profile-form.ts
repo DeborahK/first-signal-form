@@ -26,8 +26,8 @@ export class UserProfileForm {
     submission: {
       action: async (f) => {
         this.saveText.set('... Saving');
-        await this.userService.save(this.userProfileForm().value());
-        this.userProfileForm().reset(initialData);
+        await this.userService.save(f().value());
+        f().reset(initialData);
         this.saveText.set(this.defaultText);
       }
     }
