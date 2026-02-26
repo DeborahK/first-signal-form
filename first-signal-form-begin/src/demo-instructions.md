@@ -321,6 +321,7 @@ Assuming our code to save the entered data is in a service, inject that service
 ```
 userService = inject(UserService);
 ```
+Don't forget to **un-comment** the code in the service.
 
 ## 3. Add submission logic to form() function
 Submission:
