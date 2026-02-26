@@ -76,10 +76,10 @@
             Guest
           </label>
         </div>
-        @let en = userProfileForm.userType;
-        @if (en().invalid() && en().touched()) {
+        @let ut = userProfileForm.userType;
+        @if (ut().invalid() && ut().touched()) {
           <div class="alert alert-danger">
-            @for (error of en().errors(); track error.kind) {
+            @for (error of ut().errors(); track error.kind) {
               <div>{{ error.message }}</div>
             }
           </div>
@@ -87,30 +87,30 @@
       </div>
 
       @if(!userProfileForm.employeeNumber().hidden()) {
-      <div class="row">
-        <label class="row-label"
-               for="employeeNumberId">
-          Employee #
-          @if (userProfileForm.employeeNumber().required()) {
-            <span class="text-danger">*</span>
-          }
-        </label>
-        <div class="row-value">
-          <input type="text"
-                 class="form-control"
-                 [formField]="userProfileForm.employeeNumber"
-                 id="employeeNumberId"
-                 placeholder="Employee Number" />
-        </div>
-        @let en = userProfileForm.employeeNumber;
-        @if (en().invalid() && en().touched()) {
-          <div class="alert alert-danger">
-            @for (error of en().errors(); track error.kind) {
-              <div>{{ error.message }}</div>
+        <div class="row">
+          <label class="row-label"
+                for="employeeNumberId">
+            Employee #
+            @if (userProfileForm.employeeNumber().required()) {
+              <span class="text-danger">*</span>
             }
+          </label>
+          <div class="row-value">
+            <input type="text"
+                  class="form-control"
+                  [formField]="userProfileForm.employeeNumber"
+                  id="employeeNumberId"
+                  placeholder="Employee Number" />
           </div>
-        }
-      </div>
+          @let en = userProfileForm.employeeNumber;
+          @if (en().invalid() && en().touched()) {
+            <div class="alert alert-danger">
+              @for (error of en().errors(); track error.kind) {
+                <div>{{ error.message }}</div>
+              }
+            </div>
+          }
+        </div>
       }
 
       <div class="row">

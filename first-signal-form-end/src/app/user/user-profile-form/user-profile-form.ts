@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
 import { initialData, UserProfile, userProfileSchema } from '../user-profile';
-import { UserService } from '../user.service.ts';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-profile-form',
