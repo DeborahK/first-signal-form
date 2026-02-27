@@ -3,6 +3,8 @@
 ## 0. Run the application
 Display the form so we know what we're building.
 
+Template-driven, reactive, signal-forms
+
 We need:
 - Data binding
 - Validation
