@@ -7,6 +7,7 @@ We need:
 - Data binding
 - Validation
 - Display of validation messages
+- Logic
 
 ## 1. Declare the model interface
 **user-profile.ts**
@@ -39,7 +40,9 @@ userProfileModel = signal<UserProfile>({
 userProfileForm = form(this.userProfileModel)
 ```
 
-## 4. Bind each UI element 
+## 4. Bind each UI element
+Import the needed directive.
+
 **user-profile-form.ts**
 ```
 imports: [FormField],
@@ -179,45 +182,6 @@ This dramatically simplies the component.
 
 ## 5. Run
 Ensure it all still works.
-
-# Cross-field Validation
-Either the `Employee` or `Guest` radio button must be selected.
-
-## 1. Create a validation function
-- Return null if no error
-- Otherwise return an error
-
-**user-profile.ts**
-```
-function checkUserType(value: string) {
-  if (value) return null;
-  return {
-    kind: 'userTypeMissing',
-    message: 'User type is required'
-  }
-}
-```
-## 2. Add validate() and call the function
-**user-profile-form.ts**
-```
-  validate(rootPath.userType, (ctx) => checkUserType(ctx.value()))
-```
-
-## 3. Display validation message
-**user-profile-form.html**
-```
-        @let ut = userProfileForm.userType;
-        @if (ut().invalid() && ut().touched()) {
-          <div class="alert alert-danger">
-            @for (error of ut().errors(); track error.kind) {
-              <div>{{ error.message }}</div>
-            }
-          </div>
-        }
-```
-
-## 4. Run
-Must now select one radio button.
 
 # Conditional Validation
 Employee number is only required if the `Employee` radio button is selected.
@@ -378,3 +342,44 @@ Add code to the submission to set the text into the button and to reset to the d
 
 ## 6. Run
 Now the button text changes so the user knows what's happening.
+
+********** **NOT USED** ********** 
+
+# Custom Validation
+Either the `Employee` or `Guest` radio button must be selected.
+
+## 1. Create a validation function
+- Return null if no error
+- Otherwise return an error
+
+**user-profile.ts**
+```
+function checkUserType(value: string) {
+  if (value) return null;
+  return {
+    kind: 'userTypeMissing',
+    message: 'User type is required'
+  }
+}
+```
+## 2. Add validate() and call the function
+**user-profile-form.ts**
+```
+  validate(rootPath.userType, (ctx) => checkUserType(ctx.value()))
+```
+
+## 3. Display validation message
+**user-profile-form.html**
+```
+        @let ut = userProfileForm.userType;
+        @if (ut().invalid() && ut().touched()) {
+          <div class="alert alert-danger">
+            @for (error of ut().errors(); track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
+        }
+```
+
+## 4. Run
+Must now select one radio button.
