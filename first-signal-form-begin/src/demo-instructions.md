@@ -231,6 +231,34 @@ Be sure to update the imports.
 ## 2. Run
 Employee number must now match a specific format.
 
+# Cross-field/Custom Validation
+If full time, the 4 numbers at the end of the employee number must be < 5000
+
+## 1. Create a validation function
+- Return null if no error
+- Otherwise return an error
+
+**user-profile.ts**
+```
+function checkEmployeeNumber(value: string, isFullTime: boolean) {
+  if (!isFullTime) return null;
+  const lastFour = value.slice(-4);
+  if (Number(lastFour) < 5000) return null;
+  return {
+    kind: 'invalidEmployeeNumber',
+    message: 'Invalid employee number for a full-time employee'
+  }
+}
+```
+## 2. Add validate() and call the function
+**user-profile-form.ts**
+```
+  validate(rootPath.employeeNumber, (ctx) => checkEmployeeNumber(ctx.value(), ctx.valueOf(rootPath.isFullTime)));
+```
+
+## 3. Run
+Must now select one radio button.
+
 # Display logic
 enabled, disabled, hidden
 
@@ -342,44 +370,3 @@ Add code to the submission to set the text into the button and to reset to the d
 
 ## 6. Run
 Now the button text changes so the user knows what's happening.
-
-********** **NOT USED** ********** 
-
-# Custom Validation
-Either the `Employee` or `Guest` radio button must be selected.
-
-## 1. Create a validation function
-- Return null if no error
-- Otherwise return an error
-
-**user-profile.ts**
-```
-function checkUserType(value: string) {
-  if (value) return null;
-  return {
-    kind: 'userTypeMissing',
-    message: 'User type is required'
-  }
-}
-```
-## 2. Add validate() and call the function
-**user-profile-form.ts**
-```
-  validate(rootPath.userType, (ctx) => checkUserType(ctx.value()))
-```
-
-## 3. Display validation message
-**user-profile-form.html**
-```
-        @let ut = userProfileForm.userType;
-        @if (ut().invalid() && ut().touched()) {
-          <div class="alert alert-danger">
-            @for (error of ut().errors(); track error.kind) {
-              <div>{{ error.message }}</div>
-            }
-          </div>
-        }
-```
-
-## 4. Run
-Must now select one radio button.

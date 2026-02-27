@@ -30,7 +30,7 @@ export const userProfileSchema = schema<UserProfile>(rootPath => {
   validate(rootPath.employeeNumber, (ctx) => checkEmployeeNumber(ctx.value(), ctx.valueOf(rootPath.isFullTime)));
 });
 
-// If full time, the employee number must be < 5000
+// If full time, the 4 numbers at the end of the employee number must be < 5000
 function checkEmployeeNumber(value: string, isFullTime: boolean) {
   if (!isFullTime) return null;
   const lastFour = value.slice(-4);
