@@ -19,12 +19,14 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(139, 105, 20, 0.3) 25%, 
-    rgba(139, 105, 20, 0.5) 50%, 
-    rgba(139, 105, 20, 0.3) 75%, 
-    transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(139, 105, 20, 0.3) 25%,
+    rgba(139, 105, 20, 0.5) 50%,
+    rgba(139, 105, 20, 0.3) 75%,
+    transparent 100%
+  );
 }
 
 .card:hover {
@@ -68,9 +70,9 @@ form {
 }
 
 .row {
-	display: grid;
-	grid-template-columns: .2fr 1fr;
-	align-items: top;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  align-items: top;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md, 1rem);
 }
@@ -113,9 +115,10 @@ form {
 .form-control:focus {
   outline: none;
   border-color: var(--primary-color, #b8860b);
-  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15), 
-              0 0 12px rgba(184, 134, 11, 0.25),
-              inset 0 1px 3px rgba(26, 22, 18, 0.1);
+  box-shadow:
+    0 0 0 3px rgba(184, 134, 11, 0.15),
+    0 0 12px rgba(184, 134, 11, 0.25),
+    inset 0 1px 3px rgba(26, 22, 18, 0.1);
   background-color: rgba(255, 255, 255, 0.95);
 }
 
@@ -129,7 +132,7 @@ form {
   background-color: #f5f2ec; /* light muted bg */
   color: var(--text-secondary, #6b5d52);
   border-color: var(--border-color-disabled, #b8a68f);
-  opacity: 1;                /* avoid relying solely on opacity for contrast */
+  opacity: 1; /* avoid relying solely on opacity for contrast */
   box-shadow: none;
   cursor: not-allowed;
   pointer-events: none;
@@ -202,8 +205,9 @@ form {
 .btn-primary:not(:disabled):hover {
   background-color: #9a7209;
   border-color: #9a7209;
-  box-shadow: 0 4px 16px rgba(184, 134, 11, 0.4),
-              0 0 20px rgba(184, 134, 11, 0.3);
+  box-shadow:
+    0 4px 16px rgba(184, 134, 11, 0.4),
+    0 0 20px rgba(184, 134, 11, 0.3);
 }
 
 .btn-secondary {
@@ -228,7 +232,7 @@ form {
 }
 
 /* Text Utilities */
-.text-danger { 
+.text-danger {
   color: var(--danger-color, #8b0000);
   font-weight: var(--font-weight-bold, 700);
 }
