@@ -1,0 +1,122 @@
+<div class="card">
+  <div class="card-header">
+    User Profile
+    @if(fullName()) {
+      for {{fullName()}}
+    }
+  </div>
+  <div class="card-body">
+    <form [formRoot]="userProfileForm"
+          autocomplete="off">
+      <div class="row">
+        <label class="row-label"
+               for="firstNameId">
+          First Name
+          @if (userProfileForm.firstName().required()) {
+            <span class="text-danger">*</span>
+          }
+        </label>
+        <div class="row-value">
+          <input type="text"
+                 class="form-control"
+                 [formField]="userProfileForm.firstName"
+                 id="firstNameId"
+                 placeholder="First Name" />
+        </div>
+        <app-field-errors
+                class="row-value" 
+                [errorField]="userProfileForm.firstName"/>
+      </div>
+
+      <div class="row">
+        <label class="row-label"
+               for="lastNameId">
+          Last Name
+          @if (userProfileForm.lastName().required()) {
+            <span class="text-danger">*</span>
+          }
+        </label>
+        <div class="row-value">
+          <input type="text"
+                 class="form-control"
+                 [formField]="userProfileForm.lastName"
+                 id="lastNameId"
+                 placeholder="Last Name" />
+        </div>
+        <app-field-errors
+                class="row-value" 
+                [errorField]="userProfileForm.lastName"/>
+      </div>
+
+      <div class="row">
+        <label class="row-label">User Type</label>
+        <div class="row-value radio-group">
+          <label>
+            <input type="radio"
+                   class="radio-input"
+                   [formField]="userProfileForm.userType"
+                   value="employee" />
+            Employee
+          </label>
+          <label>
+            <input type="radio"
+                   class="radio-input"
+                   [formField]="userProfileForm.userType"
+                   value="guest" />
+            Guest
+          </label>
+        </div>
+        <app-field-errors
+                class="row-value" 
+                [errorField]="userProfileForm.userType"/>
+      </div>
+
+      @if(!userProfileForm.employeeNumber().hidden()) {
+        <div class="row">
+          <div class="row-value">
+            <label>
+              <input type="checkbox"
+                     class="radio-input"
+                     [formField]="userProfileForm.isFullTime" />
+              Full Time
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="row-label"
+                 for="employeeNumberId">
+            Employee #
+            @if (userProfileForm.employeeNumber().required()) {
+              <span class="text-danger">*</span>
+            }
+          </label>
+          <div class="row-value">
+            <input type="text"
+                   class="form-control"
+                   [formField]="userProfileForm.employeeNumber"
+                   id="employeeNumberId"
+                   placeholder="Employee Number" />
+          </div>
+          <app-field-errors
+                  class="row-value" 
+                  [errorField]="userProfileForm.employeeNumber"/>
+        </div>
+      }
+
+      <div class="row">
+        <div class="row-value">
+          <button type="submit"
+                  title="Ensure the form is valid and required fields are entered before saving"
+                  class="btn btn-primary">
+            {{saveText()}}
+          </button>
+          <button type="button"
+                  class="btn btn-secondary">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

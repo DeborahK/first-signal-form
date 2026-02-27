@@ -1,0 +1,15 @@
+/* Alert Styles for form messages */
+.alert {
+  gap: 0px;
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-md, 1rem);
+  margin-top: -5px;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius, 0.375rem);
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
