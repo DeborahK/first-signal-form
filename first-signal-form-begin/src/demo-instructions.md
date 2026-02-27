@@ -18,6 +18,7 @@ export interface UserProfile {
   firstName: string;
   lastName: string;
   userType: 'employee' | 'guest' | '';
+  isFullTime: boolean;
   employeeNumber: string;
 }
 ```
@@ -29,6 +30,7 @@ userProfileModel = signal<UserProfile>({
   firstName: '',
   lastName: '',
   userType: '',
+  isFullTime: false,
   employeeNumber: ''
 });
 ```
@@ -148,6 +150,7 @@ export const initialData: UserProfile = {
   firstName: '',
   lastName: '',
   userType: '',
+  isFullTime: false,  
   employeeNumber: ''
 }
 ```
@@ -257,7 +260,7 @@ function checkEmployeeNumber(value: string, isFullTime: boolean) {
 ```
 
 ## 3. Run
-Must now select one radio button.
+The validation for the last four digits depend on the value of the checkbox.
 
 # Display logic
 enabled, disabled, hidden
