@@ -4,6 +4,7 @@ export interface UserProfile {
   firstName: string;
   lastName: string;
   userType: 'employee' | 'guest' | '';
+  isFullTime: boolean;
   employeeNumber: string;
 }
 
@@ -11,6 +12,7 @@ export const initialData: UserProfile = {
   firstName: '',
   lastName: '',
   userType: '',
+  isFullTime: false,
   employeeNumber: ''
 }
 
@@ -22,15 +24,19 @@ export const userProfileSchema = schema<UserProfile>(rootPath => {
     message: 'Employee number is required for all employees',
     when: ctx => ctx.valueOf(rootPath.userType) === 'employee'
   });
-  hidden(rootPath.employeeNumber, ctx => ctx.valueOf(rootPath.userType) !== 'employee');
+  required(rootPath.userType, { message: 'User type is required' });
   pattern(rootPath.employeeNumber, /^[A-Z]{2}-\d{4}$/, { message: 'Employee number is of the form AA-####' });
-  validate(rootPath.userType, (ctx) => checkUserType(ctx.value()))
+  hidden(rootPath.employeeNumber, ctx => ctx.valueOf(rootPath.userType) !== 'employee');
+  validate(rootPath.employeeNumber, (ctx) => checkEmployeeNumber(ctx.value(), ctx.valueOf(rootPath.isFullTime)));
 });
 
-function checkUserType(value: string) {
-  if (value) return null;
+// If full time, the employee number must be < 5000
+function checkEmployeeNumber(value: string, isFullTime: boolean) {
+  if (!isFullTime) return null;
+  const lastFour = value.slice(-4);
+  if (Number(lastFour) < 5000) return null;
   return {
-    kind: 'userTypeMissing',
-    message: 'User type is required'
+    kind: 'invalidEmployeeNumber',
+    message: 'Invalid employee number for a full-time employee'
   }
 }

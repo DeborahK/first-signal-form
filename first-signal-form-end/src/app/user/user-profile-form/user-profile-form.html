@@ -88,8 +88,19 @@
 
       @if(!userProfileForm.employeeNumber().hidden()) {
         <div class="row">
+          <div class="row-value">
+            <label>
+              <input type="checkbox"
+                     class="radio-input"
+                     [formField]="userProfileForm.isFullTime" />
+              Full Time
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
           <label class="row-label"
-                for="employeeNumberId">
+                 for="employeeNumberId">
             Employee #
             @if (userProfileForm.employeeNumber().required()) {
               <span class="text-danger">*</span>
@@ -97,10 +108,10 @@
           </label>
           <div class="row-value">
             <input type="text"
-                  class="form-control"
-                  [formField]="userProfileForm.employeeNumber"
-                  id="employeeNumberId"
-                  placeholder="Employee Number" />
+                   class="form-control"
+                   [formField]="userProfileForm.employeeNumber"
+                   id="employeeNumberId"
+                   placeholder="Employee Number" />
           </div>
           @let en = userProfileForm.employeeNumber;
           @if (en().invalid() && en().touched()) {
